@@ -1,0 +1,63 @@
+[
+  {
+    "marca": "Dell",
+    "modelo": "XPS 13",
+    "precio": 1500
+  },
+  {
+    "marca": "HP",
+    "modelo": "Spectre x360",
+    "precio": 1400
+  },
+  {
+    "marca": "Apple",
+    "modelo": "MacBook Pro 14",
+    "precio": 2000
+  },
+  {
+    "marca": "Lenovo",
+    "modelo": "ThinkPad X1 Carbon",
+    "precio": 1800
+  },
+  {
+    "marca": "Asus",
+    "modelo": "ROG Zephyrus G14",
+    "precio": 1600
+  },
+  {
+    "marca": "Acer",
+    "modelo": "Swift 3",
+    "precio": 800
+  },
+  {
+    "marca": "Microsoft",
+    "modelo": "Surface Laptop 5",
+    "precio": 1300
+  },
+  {
+    "marca": "MSI",
+    "modelo": "Stealth 15M",
+    "precio": 1450
+  },
+  {
+    "marca": "Razer",
+    "modelo": "Blade 14",
+    "precio": 2200
+  },
+  {
+    "marca": "Samsung",
+    "modelo": "Galaxy Book Pro",
+    "precio": 1200
+  },
+  {
+    "marca": "Huawei",
+    "modelo": "MateBook X Pro",
+    "precio": 1350
+  },
+  {
+    "marca": "Gigabyte",
+    "modelo": "AERO 15",
+    "precio": 1700
+  }
+]
+
