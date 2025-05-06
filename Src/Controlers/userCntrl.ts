@@ -14,7 +14,6 @@ export const getUsuarios = async (req: Request, res: Response) => {
         res.status(500).json({ error: 'Error al obtener los usuarios' });
     }
 };
-
 export const nuevoUsuario = async (req: Request, res: Response) => {
     const { nombre, correo, admin, password } = req.body;
     try {
@@ -27,19 +26,29 @@ export const nuevoUsuario = async (req: Request, res: Response) => {
     }
 };
 
-export const loginUsuario = async (req: Request, res: Response) => {
+export const loginUsuario = async (req: Request, res: Response): Promise<void> =>{
     const { correo, password } = req.body;
     try {
+        console.log(correo)
         const user = await userTable.findOne({ correo });
+        console.log(user)
         
-        if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
-
-        if (!user.password) {
-            return res.status(500).json({ error: 'Contraseña no definida para este usuario' });
+        if (!user){
+         res.status(404).json({ error: 'Usuario no encontrado' });
+         return;
         }
 
-        const isValid = await bcrypt.compare(password, user.password as string); // Aquí estamos asegurándonos que user.password sea un string
-        if (!isValid) return res.status(401).json({ error: 'Contraseña incorrecta' });
+        if (!user.password) {
+            res.status(500).json({ error: 'Contraseña no definida para este usuario' });
+            return
+        }
+
+        const isValid = await bcrypt.compare(password, user.password as string);
+        console.log(await bcrypt.hash(password,10))
+        if (!isValid){
+            res.status(401).json({ error: 'Contraseña incorrecta' });
+            return
+        } 
 
         const token = jwt.sign(
             { id: user._id, correo: user.correo, admin: user.admin },
