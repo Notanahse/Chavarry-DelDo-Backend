@@ -1,4 +1,3 @@
-# Etapa 1: Build
 FROM node:18-alpine AS builder
 
 WORKDIR /var/app
@@ -9,7 +8,6 @@ RUN npm install
 COPY . .
 RUN npx tsc
 
-# Etapa 2: Runtime
 FROM node:18-alpine AS runner
 
 WORKDIR /var/app
