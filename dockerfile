@@ -1,14 +1,14 @@
-FROM node:18-alpine AS builder
+FROM node:18 AS builder
 
 WORKDIR /var/app
 
 COPY ./package*.json ./
-RUN npm install
+RUN npm ci --omit=dev
 
 COPY . .
 RUN npx tsc
 
-FROM node:18-alpine AS runner
+FROM node:18 AS runner
 
 WORKDIR /var/app
 
@@ -18,3 +18,4 @@ COPY --from=builder /var/app/package*.json ./
 
 EXPOSE 3000
 CMD ["node", "dist/index.js"]
+

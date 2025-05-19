@@ -19,12 +19,12 @@ export const auth = (req: Request, res: Response, next: NextFunction): void => {
 
         const token = authHeader.replace("Bearer ", "");
         const decoded = jwt.verify(token, SECRET_KEY);
-        req.body.user = decoded; // Decodifica el token y añade la información del usuario a `req.body`
+        req.body.user = decoded;
         
-        next(); // Llama a la siguiente función del middleware o ruta
+        next(); 
 
     } catch (error) {
         res.status(401).json({ error: "Token inválido" });
     }
 };
-console.log(process.env.SECRET_KEY); // Verifica si la variable SECRET_KEY está cargada correctamente
+console.log(process.env.SECRET_KEY); 
