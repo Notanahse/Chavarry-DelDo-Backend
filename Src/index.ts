@@ -8,24 +8,24 @@ var cors= require('cors')
 dotenv.config(); 
 
 const app = express();
-app.use(express.json(),cors()); 
+app.use(express.json());
+app.use(cors()); 
 
 const PORT = process.env.PORT || 3000;
 const MONGOURL = process.env.MONGO_URL || "mongodb://localhost:27017/ApiDB25";
 
 
-mongoose.connect("mongodb://localhost:27017/ApiDB25")
+mongoose.connect(MONGOURL)
     .then(() => {
-        console.log("Database connected successfully");
+        console.log("Database connected successfully at: ", MONGOURL);
         app.listen(PORT, () => {
             console.log(`Server running at http://localhost:${PORT}`);
         });
     })
     .catch((error) => console.error("Error DB:", error));
 
-// Usar las rutas de los usuarios
-app.use("/usuarios", userRoutes); // Esta línea monta el enrutador en la ruta /usuarios
 
+app.use("/usuarios", userRoutes);
 
 
 
