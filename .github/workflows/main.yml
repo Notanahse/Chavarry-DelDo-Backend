@@ -27,11 +27,18 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build Docker image
-      run: docker build -t ghcr.io/${{ github.repository_owner }}/chavarry-deldobackend:latest .
+      run: |
+        REPO_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        docker build -t ghcr.io/${REPO_LOWER}/chavarry-deldobackend:latest .
 
     - name: Run simple test - check app starts
-      run: docker run --rm ghcr.io/${{ github.repository_owner }}/chavarry-deldobackend:latest node Src/index.ts
+      run: |
+        REPO_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        docker run --rm ghcr.io/${REPO_LOWER}/chavarry-deldobackend:latest node Src/index.ts
 
     - name: Push Docker image to GHCR
       if: github.ref == 'refs/heads/main'
-      run: docker push ghcr.io/${{ github.repository_owner }}/chavarry-deldobackend:latest
+      run: |
+        REPO_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+        docker push ghcr.io/${REPO_LOWER}/chavarry-deldobackend:latest
+
