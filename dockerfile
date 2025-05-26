@@ -7,6 +7,7 @@ RUN npm ci
 
 COPY . .
 RUN npx tsc
+RUN ls -la /var/app/dist
 
 FROM node:18 AS runner
 
