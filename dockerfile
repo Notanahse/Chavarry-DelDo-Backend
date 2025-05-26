@@ -6,7 +6,12 @@ COPY ./package*.json ./
 RUN npm ci
 
 COPY . .
+
+RUN ls -la /var/app
+RUN ls -la /var/app/Src
+
 RUN npx tsc
+
 RUN ls -la /var/app/dist
 
 FROM node:18 AS runner
