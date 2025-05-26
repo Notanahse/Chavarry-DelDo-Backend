@@ -10,7 +10,7 @@ COPY . .
 RUN ls -la /var/app
 RUN ls -la /var/app/Src
 
-RUN npx tsc
+RUN npm run build
 
 RUN ls -la /var/app/dist
 
