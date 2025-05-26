@@ -3,7 +3,7 @@ FROM node:18 AS builder
 WORKDIR /var/app
 
 COPY ./package*.json ./
-RUN npm ci --omit=dev
+RUN npm ci
 
 COPY . .
 RUN npx tsc
@@ -18,4 +18,3 @@ COPY --from=builder /var/app/package*.json ./
 
 EXPOSE 3000
 CMD ["node", "dist/index.js"]
-
