@@ -47,4 +47,3 @@ jobs:
       run: |
         REPO_LOWER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
         docker push ghcr.io/${REPO_LOWER}/chavarry-deldobackend:latest
-
